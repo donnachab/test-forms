@@ -2,5 +2,5 @@
     "name": "Python 3",
     "image": "mcr.microsoft.com/devcontainers/python:0-3.11-bullseye",
     "features": {},
-    "postCreateCommand": "apt-get update && apt-get install -y python3-tk"
- }
+    "postCreateCommand": "apt-get update && apt-get install -y python3-tk && pip install openpyxl"
+}
