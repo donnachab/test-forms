@@ -2,5 +2,5 @@
     "name": "Python 3",
     "image": "mcr.microsoft.com/devcontainers/python:0-3.11-bullseye",
     "features": {},
-    "postCreateCommand": "apt-get update && apt-get install -y python3-tk && pip install -r requirements.txt"
+    "postCreateCommand": "apt-get update && apt-get install -y python3-tk xvfb && pip install -r requirements.txt && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99"
 }
