@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donnacha Bushe - CV (Cosmic Edition)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        // Define color palettes for easy access in JS/CSS if needed later
+        const palettes = {
+            dark: {
+                'cv-bg-base': '#0a0f1a',     // Even Darker Blue Base
+                'cv-bg-main': '#0f172a',     // Very Dark Blue Main Area
+                'cv-bg-sidebar': '#1e293b',    // Dark Slate Blue Sidebar
+                'cv-text-bright': '#f8fafc',   // Bright White/Off-white
+                'cv-text-med': '#cbd5e1',   // Light Slate Gray
+                'cv-text-dim': '#94a3b8',   // Medium Slate Gray
+                'cv-accent': '#22d3ee',     // Bright Cyan Accent
+                'cv-accent-dark': '#0e7490', // Darker Cyan
+                'cv-border': '#334155',   // Slate Gray Border
+                'cv-shadow': 'rgba(34, 211, 238, 0.15)' // Shadow color based on accent
+            },
+            light: {
+                'cv-bg-base': '#f8f9fa',     // Very Light Gray Base
+                'cv-bg-main': '#ffffff',     // White Main Area
+                'cv-bg-sidebar': '#e9ecef',    // Lighter Gray Sidebar
+                'cv-text-bright': '#212529',   // Near Black
+                'cv-text-med': '#495057',   // Dark Gray
+                'cv-text-dim': '#6c757d',   // Medium Gray
+                'cv-accent': '#0e7490',     // Dark Cyan Accent (better contrast on light)
+                'cv-accent-dark': '#083344', // Even Darker Cyan
+                'cv-border': '#ced4da',   // Light Gray Border
+                'cv-shadow': 'rgba(14, 116, 144, 0.15)' // Shadow color based on accent
+            }
+        };
+
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode (though we'll use custom classes)
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    // Set default colors (dark mode)
+                    colors: palettes.dark
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Scrollbar styling (Dark Mode Default) */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--bg-base); /* Use CSS variables */
+            color: var(--text-med);
+        }
+
+        /* CSS Variables for Theming */
+        :root {
+            --bg-base: #0a0f1a;
+            --bg-main: #0f172a;
+            --bg-sidebar: #1e293b;
+            --text-bright: #f8fafc;
+            --text-med: #cbd5e1;
+            --text-dim: #94a3b8;
+            --accent: #22d3ee;
+            --accent-dark: #0e7490;
+            --border: #334155;
+            --shadow-color: rgba(34, 211, 238, 0.15);
+            --badge-bg: rgba(51, 65, 85, 0.3); /* cv-border/30 */
+            --badge-border: #334155;
+            --badge-text: #cbd5e1;
+        }
+
+        .light-mode {
+            --bg-base: #f8f9fa;
+            --bg-main: #ffffff;
+            --bg-sidebar: #e9ecef;
+            --text-bright: #212529;
+            --text-med: #495057;
+            --text-dim: #6c757d;
+            --accent: #0e7490; /* Darker cyan for light mode */
+            --accent-dark: #083344;
+            --border: #ced4da;
+            --shadow-color: rgba(14, 116, 144, 0.15);
+            --badge-bg: #e2e8f0; /* Light gray badge bg */
+            --badge-border: #ced4da;
+            --badge-text: #495057;
+        }
+
+        /* Apply CSS Variables */
+        .bg-cv-base { background-color: var(--bg-base); }
+        .bg-cv-main { background-color: var(--bg-main); }
+        .bg-cv-sidebar { background-color: var(--bg-sidebar); }
+        .text-cv-bright { color: var(--text-bright); }
+        .text-cv-med { color: var(--text-med); }
+        .text-cv-dim { color: var(--text-dim); }
+        .text-cv-accent { color: var(--accent); }
+        .border-cv-border { border-color: var(--border); }
+        .shadow-cv-accent { box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color); } /* Example shadow */
+        .marker\:text-cv-accent::marker { color: var(--accent); }
+        .badge {
+            background-color: var(--badge-bg);
+            border-color: var(--badge-border);
+            color: var(--badge-text);
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+        .hover\:text-cv-accent:hover { color: var(--accent); }
+
+        /* Starfield Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            z-index: -2; /* Behind everything */
+            background-color: var(--bg-base); /* Match body */
+            transition: background-color 0.3s ease;
+        }
+         body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            z-index: -1; /* Behind content, above base */
+            background-image:
+                radial-gradient(1px 1px at 20px 30px, #eee, transparent),
+                radial-gradient(1px 1px at 40px 70px, #fff, transparent),
+                radial-gradient(1px 1px at 50px 160px, #ddd, transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 130px 80px, #fff, transparent),
+                radial-gradient(1px 1px at 160px 120px, #ddd, transparent),
+                /* Add more for density */
+                radial-gradient(1px 1px at 55% 10%, #eee, transparent),
+                radial-gradient(1px 1px at 60% 40%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 75% 60%, #fff, transparent),
+                radial-gradient(1px 1px at 80% 90%, #ddd, transparent),
+                radial-gradient(1px 1px at 15% 85%, #eee, transparent);
+            /* ACTUAL FIX: Decreased size and Increased opacity */
+            background-size: 120px 120px; /* Smaller size = denser */
+            animation: starsAnim 120s linear infinite;
+            opacity: 1; /* Fully opaque in dark mode */
+            transition: opacity 0.5s ease;
+        }
+        .light-mode body::after {
+             /* ACTUAL FIX: Adjusted light mode opacity */
+            opacity: 0.4; /* Still visible but less intense */
+        }
+
+        @keyframes starsAnim {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; } /* Adjust for desired movement */
+        }
+
+        /* Glow effect */
+        .text-glow {
+            text-shadow: 0 0 10px var(--accent); /* Use CSS var */
+        }
+        .hover\:text-glow:hover {
+             text-shadow: 0 0 10px var(--accent);
+        }
+
+        /* Toggle Button Style */
+        #theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            background-color: var(--bg-sidebar);
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #theme-toggle:hover {
+             color: var(--accent);
+             border-color: var(--accent);
+             box-shadow: 0 0 10px var(--accent);
+        }
+        #theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+        .light-mode #theme-toggle .moon-icon { display: none; }
+        .dark-mode #theme-toggle .sun-icon { display: none; } /* Default state */
+        body:not(.light-mode) #theme-toggle .sun-icon { display: none; } /* Hide sun in dark */
+        body.light-mode #theme-toggle .moon-icon { display: none; } /* Hide moon in light */
+
+
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 dark-mode">
+
+    <button id="theme-toggle" title="Toggle light/dark mode">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 14a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM3 9a1 1 0 011-1h1a1 1 0 110 2H4a1 1 0 01-1-1zm14 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM5.636 5.636a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zm10.108 8.708a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM5.636 14.364a1 1 0 010-1.414l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414 0zm10.108-8.708a1 1 0 010-1.414l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414 0zM10 5a5 5 0 100 10 5 5 0 000-10z" clip-rule="evenodd" />
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+    </button>
+
+    <div class="max-w-6xl mx-auto bg-cv-main/80 backdrop-blur-sm shadow-cv-accent shadow-2xl rounded-xl overflow-hidden md:flex border border-cv-border">
+
+        <aside class="w-full md:w-1/3 bg-cv-sidebar/90 p-6 md:p-8 text-cv-med border-r border-cv-border">
+            <section class="mb-8">
+                <h2 class="font-poppins text-lg font-semibold text-cv-accent uppercase tracking-wider mb-4 text-glow">Contact</h2>
+                <div class="space-y-3 text-sm">
+                     <div class="flex items-start">
+                        <svg class="w-4 h-4 mr-3 mt-1 text-cv-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                        <span>92 Sceilg Ard, Headford Rd<br>Galway, H91 Y9VH</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-3 text-cv-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        <a href="tel:+353857071293" class="hover:text-cv-accent hover:text-glow transition-all duration-200">+353-85-7071293</a>
+                    </div>
+                    <div class="flex items-center">
+                         <svg class="w-4 h-4 mr-3 text-cv-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                        <a href="mailto:donnachab@gmail.com" class="hover:text-cv-accent hover:text-glow transition-all duration-200">donnachab@gmail.com</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="font-poppins text-lg font-semibold text-cv-accent uppercase tracking-wider mb-4 text-glow">Core Skills</h2>
+                 <ul class="space-y-1.5 text-sm list-inside">
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Tech Doc Strategy & Execution</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> DITA CMS & Git/Markdown</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> API Documentation (Swagger/OpenAPI)</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Content Reuse & Architecture</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Developer Training & Enablement</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> UX Writing & UI Text</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> CI/CD & DevOps Concepts</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Project Management & Leadership</li>
+                    <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Fluent French</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                 <h2 class="font-poppins text-lg font-semibold text-cv-accent uppercase tracking-wider mb-4 text-glow">Toolbox</h2>
+                 <div class="flex flex-wrap gap-2 text-xs">
+                    <span class="badge border px-2 py-1 rounded">DITA CMS (IXIASOFT)</span>
+                    <span class="badge border px-2 py-1 rounded">Markdown</span>
+                    <span class="badge border px-2 py-1 rounded">Git</span>
+                    <span class="badge border px-2 py-1 rounded">Backstage</span>
+                    <span class="badge border px-2 py-1 rounded">Jenkins</span>
+                    <span class="badge border px-2 py-1 rounded">Jira</span>
+                    <span class="badge border px-2 py-1 rounded">Confluence</span>
+                    <span class="badge border px-2 py-1 rounded">XML</span>
+                    <span class="badge border px-2 py-1 rounded">HTML</span>
+                    <span class="badge border px-2 py-1 rounded">PlantUML</span>
+                    <span class="badge border px-2 py-1 rounded">SnagIt</span>
+                    <span class="badge border px-2 py-1 rounded">Swagger/OpenAPI</span>
+                    <span class="badge border px-2 py-1 rounded">JSON</span>
+                    <span class="badge border px-2 py-1 rounded">YAML</span>
+                    <span class="badge border px-2 py-1 rounded">TOML</span>
+                    <span class="badge border px-2 py-1 rounded">Captivate</span>
+                    <span class="badge border px-2 py-1 rounded">AI Prompting</span>
+                 </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="font-poppins text-lg font-semibold text-cv-accent uppercase tracking-wider mb-4 text-glow">Education</h2>
+                <div class="text-sm space-y-3">
+                    <div>
+                        <h3 class="font-semibold text-cv-bright">BA French & History (Hons)</h3>
+                        <p class="text-cv-dim">Trinity College Dublin</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-cv-bright">HDip Info. Technology (Hons)</h3>
+                        <p class="text-cv-dim">NUI Maynooth</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="font-poppins text-lg font-semibold text-cv-accent uppercase tracking-wider mb-4 text-glow">Certifications</h2>
+                 <ul class="space-y-1.5 text-sm list-inside">
+                     <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Train the Trainer | SAP</li>
+                     <li><span class="text-cv-accent mr-1.5 font-bold">&gt;</span> Interview Skills | intive</li>
+                 </ul>
+            </section>
+        </aside>
+
+        <main class="w-full md:w-2/3 bg-cv-main/80 p-6 md:p-8">
+             <header class="mb-10 border-b border-cv-border pb-4">
+                <h1 class="font-poppins text-4xl md:text-5xl font-bold text-cv-bright tracking-tight">DONNACHA BUSHE</h1>
+                <p class="font-poppins text-xl text-cv-accent mt-1 text-glow">Senior Technical Writer | Doc Architect | Developer Advocate</p>
+            </header>
+
+            <section class="mb-10">
+                 <p class="text-cv-med leading-relaxed">
+                    19 years crafting high-impact technical documentation that empowers users and developers. I don't just write; I architect documentation solutions, master complex tech, establish best practices (Git/Markdown, DITA), and train teams to communicate clearly. Proven ability to streamline workflows, champion content reuse, and deliver audience-centric content across UI, guides, and APIs.
+                 </p>
+            </section>
+
+            <section>
+                <h2 class="font-poppins text-2xl font-semibold text-cv-accent uppercase tracking-wider mb-6 text-glow border-b border-cv-border pb-2">Experience</h2>
+                <div class="space-y-8">
+                    <article>
+                        <h3 class="text-lg font-semibold text-cv-bright">Senior Technical Writer</h3>
+                        <p class="text-md text-cv-accent mb-1">intive</p>
+                        <p class="text-xs text-cv-dim mb-3 uppercase tracking-wider">Athlone, Ireland & Remote | July 2017 – Present</p>
+                        <h4 class="text-sm font-semibold text-cv-bright mt-4 mb-2">Client: Ericsson</h4>
+                        <ul class="list-disc list-outside space-y-2 pl-5 text-cv-med text-sm marker:text-cv-accent">
+                            <li>Led user-centric overhaul of a pipeline orchestrator's doc site (DITA standards), boosting usability.</li>
+                            <li>Trained dev teams on simplified DITA guidelines, improving quality & reducing review friction.</li>
+                            <li>Integrated docs-as-code using Backstage & pioneered topic reuse in Git/Markdown & DITA.</li>
+                            <li>Streamlined API docs: Direct codebase editing & Swagger publishing, eliminating IXIASOFT copy/paste.</li>
+                            <li>Drive doc solutions for major telecom client; leverage AI for technical info gathering (w/ anonymization).</li>
+                            <li>Deep expertise gained in CI/CD orchestration tools and associated services.</li>
+                        </ul>
+                        <h4 class="text-sm font-semibold text-cv-bright mt-4 mb-2">Client: DT One</h4>
+                         <ul class="list-disc list-outside space-y-2 pl-5 text-cv-med text-sm marker:text-cv-accent">
+                            <li>Designed developer portal structure and API documentation strategy.</li>
+                         </ul>
+                         <h4 class="text-sm font-semibold text-cv-bright mt-4 mb-2">Internal: New Business POC</h4>
+                         <ul class="list-disc list-outside space-y-2 pl-5 text-cv-med text-sm marker:text-cv-accent">
+                             <li>Designed Figma graphics illustrating Irish legislative workflow for a proof-of-concept.</li>
+                         </ul>
+                    </article>
+
+                     <article>
+                        <h3 class="text-lg font-semibold text-cv-bright">Senior Information Developer</h3>
+                        <p class="text-md text-cv-accent mb-1">SAP</p>
+                        <p class="text-xs text-cv-dim mb-3 uppercase tracking-wider">Galway, Ireland | March 2005 – July 2015</p>
+                        <ul class="list-disc list-outside space-y-2 pl-5 text-cv-med text-sm marker:text-cv-accent">
+                           <li>Fast-tracked promotion (Info Dev -> Specialist -> Senior) within 4 years.</li>
+                           <li>Delivered timely, high-quality docs, e-learning, & UA for IT System Mgmt & MDG.</li>
+                           <li>Incorporated direct customer feedback (on-site visit) into Help Portal redesign.</li>
+                           <li>Mentored global colleagues, managed tool support, created templates & graphics.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <h3 class="text-lg font-semibold text-cv-bright">Technical Writer</h3>
+                        <p class="text-md text-cv-accent mb-1">Skillsoft</p>
+                        <p class="text-xs text-cv-dim mb-3 uppercase tracking-wider">Dublin, Ireland | March 2001 – March 2005</p>
+                         <ul class="list-disc list-outside space-y-2 pl-5 text-cv-med text-sm marker:text-cv-accent">
+                            <li>Designed, developed, and delivered end-to-end training courses (content, demos, sims, assessments).</li>
+                            <li>Led planning with SMEs and graphic designers.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <h3 class="text-lg font-semibold text-cv-bright">Programmer</h3>
+                        <p class="text-md text-cv-accent mb-1">Aviva</p>
+                        <p class="text-xs text-cv-dim mb-3 uppercase tracking-wider">Dublin, Ireland | Sept 1997 – Feb 2001</p>
+                        <ul class="list-disc list-outside space-y-2 pl-5 text-cv-med text-sm marker:text-cv-accent">
+                           <li>Hybrid role involving coding, user support, and system maintenance.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        // Theme Toggle Script
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        // Apply saved theme on load
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
+        } else {
+             document.body.classList.add('dark-mode'); // Default to dark
+             document.body.classList.remove('light-mode');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            document.body.classList.toggle('dark-mode');
+
+            // Save preference
+            let theme = 'dark';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light';
+            }
+            localStorage.setItem('theme', theme);
+        });
+    </script>
+
+</body>
+</html>
